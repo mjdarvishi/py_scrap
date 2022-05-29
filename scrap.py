@@ -2,13 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 import openpyxl
 
+#prepration for writing in excell file
 filename = 'b:\\python\\sample.xlsx'
 wb = openpyxl.load_workbook(filename=filename)
 sheet = wb['Sheet1']
-for x in range(400,600,1):
-    # Getting page HTML
+# fech 500 page 
+for x in range(500):
+    # getting page HTML
     page = requests.get(f'https://divar.ir/s/tehran/auto?page={x}')
-    # Parsing content using beautifulsoup
+    # parsing content using beautifulsoup
     soup = BeautifulSoup(page.content, 'html.parser')
     links = soup.select("div .post-card-item")
     for idx, item in enumerate(links):
